@@ -15,7 +15,6 @@ Random Integer between 1 and 5 - 10.times.map { 1+Random.rand(5) }
 
 
 ## Searching - Graphs
----------------------
 **`Breadth First Search`** - this graphing algorithm uses a Queue to traverse through the nodes. It starts with a single vertex. Visits each
   node nearest to it and enqueue's each vertex. It uses the first element in the queue to be the next vertex it visits once all adjacent nodes 
   have been visited until there are no more nodes to visit and the last element in the queue is the current.
@@ -25,10 +24,8 @@ Random Integer between 1 and 5 - 10.times.map { 1+Random.rand(5) }
  that is connected to an unvisited node.
 
 ## Searching - Strings
-----------------------
 
 ## Regex
---------
 
 Expression   		 | Denotation
 :------------------- | :-----------       
@@ -62,7 +59,6 @@ Expression   		 | Denotation
 
 
 ## Block, Procs and Lambdas
----------------------------
 
 In this section I will be going over Closures with use of Block, Procs and Lambdas in the Ruby language. Lets first define what a computer science closure is:
 
@@ -73,7 +69,6 @@ In this section I will be going over Closures with use of Block, Procs and Lambd
 **`primitive functions`** - definining and basic functions being the first of recursion used to solve addition, subtraction, multiplication and division. Almost all functions are built off primitive functions.
 
 #### Blocks and Procs
----------------------
 A block is basically a `Proc`, producedures, AKA, Procs. A Proc can be used as reusable code. The difference here between a `&block` and a `Proc` is that a &block cannot be saved and a Proc can be saved. It thus is an object of &block code.
 
 Using a Proc instead of sending a block we can instantiate objects ready to be called with given blocks of code an basically run at a later time since we saved the object.
@@ -90,7 +85,6 @@ So when should we use blocks over Procs?
 4) Proc: Your method will have one or more callbacks.
 
 #### Lambdas
-------------
 Lambdas at first glance seem to be the same at Procs. The main difference in the Prob and Lambda is that the Lambda checks the arguments passed to it.
 
 	def args(code)
