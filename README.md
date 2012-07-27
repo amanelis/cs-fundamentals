@@ -1,4 +1,4 @@
-# Apple/Google Interview Preperation
+# CS Fundamentals
 
 ## Common Principles
 -------------------
