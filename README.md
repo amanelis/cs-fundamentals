@@ -1,14 +1,10 @@
-# CS Fundamentals
-
 ## Common Principles
--------------------
   1. Hash, BST, Linked List, Array, Sorting algos, Searching, String search etc.
   2. Linux, deadlocks, compilation, networking may be asked. But for new grads it will be mainly data structure, coding, and algorithms.
   3. For software test positions, read about unit test, regression test, load test etc.
   
   
 ## Unix
--------
   
 **`Mutex`** - is a protected critical section of code that can only be accessed by one process at a time.
 
