@@ -13,6 +13,8 @@
 **`Context switch`** - is passing control from one process to another and/or thread
 Random Integer between 1 and 5 - 10.times.map { 1+Random.rand(5) }
 
+**`deadlock`** -  is a situation in which two or more competing actions are each waiting for the other to finish, and thus neither ever does. If a process is unable to change its state indefinitely because the resources requested by it are being used by other waiting process, then the system is said to be in a deadlock.
+
 
 ## Searching - Graphs
 **`Breadth First Search`** - this graphing algorithm uses a Queue to traverse through the nodes. It starts with a single vertex. Visits each
@@ -154,7 +156,9 @@ So, when should we write an anonymous method (lambda) instead of a Proc? The fol
 
 So, when to use Proc over lambdas and vice versa? Honestly, besides argument checking, the difference is just in how you see closures. If you want to stay in the mindset of passing blocks of code, keep with Proc. If sending a method to another method that can return a method makes sense to you, use lambdas. But, if lambdas are just methods in object form, can we store existing methods and pass them just like Procs? For that, Ruby has the something pretty tricky up its sleeve.
 
+Ruby’s four closure types, blocks, Procs, lambdas and Methods. 
 
+Blocks and Procs act like drop-in code snippets, while lambdas and Methods act just like methods
 
 
 
