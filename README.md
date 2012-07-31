@@ -10,11 +10,9 @@
 
 **`Semaphore`** - it restricts the number of simultaneous users of a shared resource up to N. The diners problem in CS degree.
 
-**`Context switch`** - is passing control from one process to another and/or thread
-Random Integer between 1 and 5 - 10.times.map { 1+Random.rand(5) }
+**`Context switch`** - is passing control from one process to another and/or thread.
 
 **`deadlock`** -  is a situation in which two or more competing actions are each waiting for the other to finish, and thus neither ever does. If a process is unable to change its state indefinitely because the resources requested by it are being used by other waiting process, then the system is said to be in a deadlock.
-
 
 ## Searching - Graphs
 **`Breadth First Search`** - this graphing algorithm uses a Queue to traverse through the nodes. It starts with a single vertex. Visits each
@@ -26,6 +24,21 @@ Random Integer between 1 and 5 - 10.times.map { 1+Random.rand(5) }
  that is connected to an unvisited node.
 
 ## Searching - Strings
+
+**`Linear Search`** -  O(n) - looks down a list, one item at a time, without jumping. In complexity terms this is an O(n) search - the time taken to search the list gets bigger at the same rate as the list does.
+
+**`Binary Search`** -  O(logn) - is when you start with the middle of a sorted list, and see whether that's greater than or less than the value you're looking for, which determines whether the value is in the first or second half of the list.
+
+## Searching Algorithms
+
+### Quicksort
+Standard divide and conquor method. Pivot point, sort both arrays recursively. By splitting the array in to two parts you are inherently having a run time of 2* O(n/2). This ends up with a performance of O(nlogn).
+
+http://www.vogella.com/articles/JavaAlgorithmsQuicksort/article.html
+
+### Mergesort
+A divide and conquer algorithm. The sorting elements are stored in a collection. This collection is divided into two collections and these are again sorted via mergesort. Once the two collections are sorted then the result is combined. Mergesort sorts in worst case in O(n log n) time. Due to the required copying of the collection Mergesort is in the average case slower then Quicksort.
+
 
 ## Regex
 
@@ -59,6 +72,8 @@ Expression   		 | Denotation
 #### Examples
 **email** - `\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b` or  `/\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/`
 
+
+# Ruby
 
 ## Block, Procs and Lambdas
 
@@ -158,7 +173,7 @@ So, when to use Proc over lambdas and vice versa? Honestly, besides argument che
 
 Ruby’s four closure types, blocks, Procs, lambdas and Methods. 
 
-Blocks and Procs act like drop-in code snippets, while lambdas and Methods act just like methods
+Blocks and Procs act like drop-in code snippets, while lambdas and Methods act just like methods.
 
 
 
