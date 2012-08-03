@@ -1,10 +1,10 @@
-## Common Principles
+# Common Principles
   1. Hash, BST, Linked List, Array, Sorting algos, Searching, String search etc.
   2. Linux, deadlocks, compilation, networking may be asked. But for new grads it will be mainly data structure, coding, and algorithms.
   3. For software test positions, read about unit test, regression test, load test etc.
   
   
-## Unix
+# Unix
   
 **`Mutex`** - is a protected critical section of code that can only be accessed by one process at a time.
 
@@ -15,9 +15,8 @@
 **`deadlock`** -  is a situation in which two or more competing actions are each waiting for the other to finish, and thus neither ever does. If a process is unable to change its state indefinitely because the resources requested by it are being used by other waiting process, then the system is said to be in a deadlock.
 
 # Graphs
-
-## Searching - Graphs
-**`Breadth First Search`** - The Breadth First search is an extremely useful searching technique. It differs from the depth-first search in that it uses a queue to perform the search, so the order in which the nodes are visited is quite different. It has the extremely useful property that if all of the edges in a graph are unweighted (or the same weight) then the first time a node is visited is the shortest path to that node from the source node. You can verify this by thinking about what using a queue means to the search order. When we visit a node and add all the neighbors into the queue, then pop the next thing off of the queue, we will get the neighbors of the first node as the first elements in the queue. This comes about naturally from the FIFO property of the queue and ends up being an extremely useful property. One thing that we have to be careful about in a Breadth First search is that we do not want to visit the same node twice, or we will lose the property that when a node is visited it is the quickest path to that node from the source. 
+## Breadth First Search
+The Breadth First search is an extremely useful searching technique. It differs from the depth-first search in that it uses a queue to perform the search, so the order in which the nodes are visited is quite different. It has the extremely useful property that if all of the edges in a graph are unweighted (or the same weight) then the first time a node is visited is the shortest path to that node from the source node. You can verify this by thinking about what using a queue means to the search order. When we visit a node and add all the neighbors into the queue, then pop the next thing off of the queue, we will get the neighbors of the first node as the first elements in the queue. This comes about naturally from the FIFO property of the queue and ends up being an extremely useful property. One thing that we have to be careful about in a Breadth First search is that we do not want to visit the same node twice, or we will lose the property that when a node is visited it is the quickest path to that node from the source. 
 
 #### Iterative Breadth First:
 
@@ -33,7 +32,8 @@
   	}
   		
   
-**`Depth First Search`** - The basic concept is to visit a node, then push all of the nodes to be visited onto the stack. To find the next node to visit we simply pop a node of the stack, and then push all the nodes connected to that one onto the stack as well and we continue doing this until all nodes are visited. It is a key property of the Depth First search that we not visit the same node more than once, otherwise it is quite possible that we will recurse infinitely. We do this by marking the node as we visit it, then unmarking it after we have finished our recursions.
+## Depth First Search
+The basic concept is to visit a node, then push all of the nodes to be visited onto the stack. To find the next node to visit we simply pop a node of the stack, and then push all the nodes connected to that one onto the stack as well and we continue doing this until all nodes are visited. It is a key property of the Depth First search that we not visit the same node more than once, otherwise it is quite possible that we will recurse infinitely. We do this by marking the node as we visit it, then unmarking it after we have finished our recursions.
  
 #### Iterative Depth First:
  
@@ -60,6 +60,17 @@
  		mark current as not visited;
 	}
  
+## Floyd-Warshall
+Floyd-Warshall is a very powerful technique when the graph is represented by an adjacency matrix. It runs in O(n^3) time, where n is the number of vertices in the graph. However, in comparison to Dijkstra, which only gives us the shortest path from one source to the targets, Floyd-Warshall gives us the shortest paths from all source to all target nodes. There are other uses for Floyd-Warshall as well; it can be used to find connectivity in a graph (known as the Transitive Closure of a graph). 
+
+First, however we will discuss the Floyd Warshall All-Pairs Shortest Path algorithm, which is the most similar to Dijkstra. After running the algorithm on the adjacency matrix the element at adj[i][j] represents the length of the shortest path from node i to node j. The pseudo-code for the algorithm is given below:
+
+	for (k = 1 to n)
+ 		for (i = 1 to n)
+  			for (j = 1 to n)
+   				adj[i][j] = min(adj[i][j], adj[i][k] + adj[k][j]);
+ 
+ 
 ## Array - Graphs
 The basic concept is to have a 2 dimensional array of integers, where the element in row i, at column j represents the edge cost from node i to j. If the connection from i to j is not possible, we use some sort of sentinel value (usually a very large or small value, like -1 or the maximum integer). Another nice thing about this type of structure is that we can represent directed or undirected edges very easily. 
 
@@ -73,23 +84,34 @@ So for example, the following connection matrix:
 ![Array Graph](http://community.topcoder.com/i/education/graph.gif)
 	
 
- 
+# Heaps
+## Dijkstra (Heap method)
+
+It essentially allows you to write a Breadth First search, and instead of using a Queue you use a Priority Queue and define a sorting function on the nodes such that the node with the lowest cost is at the top of the Priority Queue. This allows us to find the best path through a graph in O(m * log(n)) time where n is the number of vertices and m is the number of edges in the graph.
+
+The fundamental operations on a Heap are:
+
+1) **Add** - Inserts an element into the heap, putting the element into the correct ordered location.
+
+2) **Pop** - Pops the top element from the heap, the top element will either be the highest or lowest element, depending on implementation.
+
+3) **Top** - Returns the top element on the heap.
+
+4) **Empty** - Tests if the heap is empty or not.
 
 
-## Searching - Strings
-
+## Searching
 **`Linear Search`** -  O(n) - looks down a list, one item at a time, without jumping. In complexity terms this is an O(n) search - the time taken to search the list gets bigger at the same rate as the list does.
 
 **`Binary Search`** -  O(logn) - is when you start with the middle of a sorted list, and see whether that's greater than or less than the value you're looking for, which determines whether the value is in the first or second half of the list.
 
-## Searching Algorithms
-
-### Quicksort
+# Sorting
+## Quicksort
 Standard divide and conquor method. Pivot point, sort both arrays recursively. By splitting the array in to two parts you are inherently having a run time of 2* O(n/2). This ends up with a performance of O(nlogn).
 
 http://www.vogella.com/articles/JavaAlgorithmsQuicksort/article.html
 
-### Mergesort
+## Mergesort
 A divide and conquer algorithm. The sorting elements are stored in a collection. This collection is divided into two collections and these are again sorted via mergesort. Once the two collections are sorted then the result is combined. Mergesort sorts in worst case in O(n log n) time. Due to the required copying of the collection Mergesort is in the average case slower then Quicksort.
 
 
@@ -228,7 +250,9 @@ Ruby’s four closure types, blocks, Procs, lambdas and Methods.
 
 Blocks and Procs act like drop-in code snippets, while lambdas and Methods act just like methods.
 
+# Sources
 
+[TopCoder - Graphs](http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=graphsDataStrucs1)
 
 
 
