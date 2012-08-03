@@ -14,14 +14,67 @@
 
 **`deadlock`** -  is a situation in which two or more competing actions are each waiting for the other to finish, and thus neither ever does. If a process is unable to change its state indefinitely because the resources requested by it are being used by other waiting process, then the system is said to be in a deadlock.
 
+# Graphs
+
 ## Searching - Graphs
-**`Breadth First Search`** - this graphing algorithm uses a Queue to traverse through the nodes. It starts with a single vertex. Visits each
-  node nearest to it and enqueue's each vertex. It uses the first element in the queue to be the next vertex it visits once all adjacent nodes 
-  have been visited until there are no more nodes to visit and the last element in the queue is the current.
+**`Breadth First Search`** - The Breadth First search is an extremely useful searching technique. It differs from the depth-first search in that it uses a queue to perform the search, so the order in which the nodes are visited is quite different. It has the extremely useful property that if all of the edges in a graph are unweighted (or the same weight) then the first time a node is visited is the shortest path to that node from the source node. You can verify this by thinking about what using a queue means to the search order. When we visit a node and add all the neighbors into the queue, then pop the next thing off of the queue, we will get the neighbors of the first node as the first elements in the queue. This comes about naturally from the FIFO property of the queue and ends up being an extremely useful property. One thing that we have to be careful about in a Breadth First search is that we do not want to visit the same node twice, or we will lose the property that when a node is visited it is the quickest path to that node from the source. 
+
+#### Iterative Breadth First:
+
+	void bfs(node start) {
+ 		queue s;
+ 		s.push(start);
+ 		while (s.empty() == false) {
+  			top = s.front();
+  			s.pop();
+  		
+  			mark top as visited;
+  		}
+  	}
+  		
   
-**`Depth First Search`** - this graphing algorithm uses a Stack to traverse through the nodes. It starts with a single vertex. It traverses down
- all nodes until there is no more adjacent nodes to visit, then once there is no more, it pops the stack and traverses back to find an element
- that is connected to an unvisited node.
+**`Depth First Search`** - The basic concept is to visit a node, then push all of the nodes to be visited onto the stack. To find the next node to visit we simply pop a node of the stack, and then push all the nodes connected to that one onto the stack as well and we continue doing this until all nodes are visited. It is a key property of the Depth First search that we not visit the same node more than once, otherwise it is quite possible that we will recurse infinitely. We do this by marking the node as we visit it, then unmarking it after we have finished our recursions.
+ 
+#### Iterative Depth First:
+ 
+	dfs(node start) {
+ 		stack s;
+ 		s.push(start);
+ 		while (s.empty() == false) {
+  			top = s.top();
+  			s.pop();
+  			mark top as visited;
+
+  			check for termination condition
+
+  			add all of top's unvisited neighbors to the stack.
+  			mark top as not visited;
+ 		}
+	}
+	
+#### Recursive Depth First:
+
+	dfs(node current) {
+ 		mark current as visited;
+ 		visit all of current's unvisited neighbors by calling dfs(neighbor)
+ 		mark current as not visited;
+	}
+ 
+## Array - Graphs
+The basic concept is to have a 2 dimensional array of integers, where the element in row i, at column j represents the edge cost from node i to j. If the connection from i to j is not possible, we use some sort of sentinel value (usually a very large or small value, like -1 or the maximum integer). Another nice thing about this type of structure is that we can represent directed or undirected edges very easily. 
+
+So for example, the following connection matrix:
+
+	    A  B  C
+	A   0  1  5
+	B  -1  0  1
+	C  -1 -1  0
+	
+![Array Graph](http://community.topcoder.com/i/education/graph.gif)
+	
+
+ 
+
 
 ## Searching - Strings
 
