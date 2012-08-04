@@ -100,10 +100,17 @@ The fundamental operations on a Heap are:
 4) **Empty** - Tests if the heap is empty or not.
 
 
-## Searching
+# Searching
 **`Linear Search`** -  O(n) - looks down a list, one item at a time, without jumping. In complexity terms this is an O(n) search - the time taken to search the list gets bigger at the same rate as the list does.
 
 **`Binary Search`** -  O(logn) - is when you start with the middle of a sorted list, and see whether that's greater than or less than the value you're looking for, which determines whether the value is in the first or second half of the list.
+
+## String
+### Rabin-Karp Algorithm (RK)
+The "pure" form of "the needle in a haystack problem" is considered too straightforward and is rarely seen in programming contests. However, the "rolling hash" technique used in RK is an important weapon. It is especially useful in problems where we have to look at all substrings of fixed length of a given text. An example is "the longest common substring problem": given two strings find the longest string that is a substring of both. In this case, the combination of binary search (BS) and "rolling hash" works quite well. The important point that allows us to use BS is the fact that if the given strings have a common substring of length n, they also have at least one common substring of any length m < n. And if the two strings do not have a common substring of length n they do not have a common substring of any length m > n. So all we need is to run a BS on the length of the string we are looking for. For every substring of the first string of the length fixed in the BS we insert it in a hash table using one hash value as an index and a second hash value ("double hash") is inserted in the table. For every substring of the fixed length of the second string, we calculate the corresponding two hash values and check in the table to see if they have been already seen in the first string. A hash table based on open addressing is very suitable for this task.
+
+### Knuth-Morris-Pratt Algorithm (KMP)
+
 
 # Sorting
 ## Quicksort
