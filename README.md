@@ -60,6 +60,16 @@ The basic concept is to visit a node, then push all of the nodes to be visited o
  		mark current as not visited;
 	}
  
+## HashTable
+Very similar to Ruby's hash {key: value}. Synchronized data flow. This makes HashMap better for non-threaded applications, as unsynchronized Objects typically perform better than synchronized ones. Hashtables do not allow null keys or values. HashMap allows one null key and any number of null values.
+
+	Hashtable<String, Integer> numbers = new Hashtable<String, Integer>();
+	numbers.put('one', 1);
+	numbers.put('two', 2);
+
+## HashMap
+
+ 
 ## Floyd-Warshall
 Floyd-Warshall is a very powerful technique when the graph is represented by an adjacency matrix. It runs in O(n^3) time, where n is the number of vertices in the graph. However, in comparison to Dijkstra, which only gives us the shortest path from one source to the targets, Floyd-Warshall gives us the shortest paths from all source to all target nodes. There are other uses for Floyd-Warshall as well; it can be used to find connectivity in a graph (known as the Transitive Closure of a graph). 
 
@@ -153,6 +163,162 @@ Expression   		 | Denotation
 
 #### Examples
 **email** - `\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b` or  `/\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/`
+
+# Java
+
+## Concurrency
+
+
+## Generics
+Introduced in Java SE 5.0, add stability to your code by making more of your bugs detectable at compile time. 
+
+#### What is the primary purpose of Java generics?
+The need for generic types stems mainly from the implementation and use of collections, like the ones in the Java collection framework. Generic types or methods differ from regular types and methods in that they have type parameters. A class like LinkedList<E> is a generic type.  It has a type parameter E that represents the type of the elements stored in the list.  Instead of just using a LinkedList , not saying anything about the type of elements the list contains, we can use a LinkedList<String> or a LinkedList<Integer> , thereby specifying that we mean a list of strings or integral values respectively. 
+
+#### What is the benefit of using Java generics?
+Using a parameterized type such as LinkedList<String> , instead of LinkedList , enables the compiler to perform more type checks and requires fewer dynamic casts. This way errors are detected earlier, in the sense that they are reported at compile-time by means of a compiler error message rather than at runtime by means of an exception. 
+Consider the example of a LinkedList<String> . The type LinkedList<String> expresses that the list is a homogenous list of elements of type String .  Based on the stronger information the compiler performs type checks in order to ensure that a LinkedList<String> contains only strings as elements. Any attempt to add an alien element is rejected with a compiler error message. 
+
+Example (using a parameterized type): 
+
+	LinkedList<String> list = new LinkedList<String>(); 
+	list.add("abc");       // fine 
+	list.add(new Date());  // error
+	
+Using a plain LinkedList , the compiler had not issued any message and both elements would have been added to the list. This is because the non-parameterized LinkedList does not mandate that all elements must be of the same or any particular type. A non-parameterized list is a sequence of elements of type Object and hence arbitrary. 
+Same example (using a non-parameterized type): 
+
+	LinkedList list = new LinkedList(); 
+	list.add("abc");       // fine 
+	list.add(new Date());  // fine as well
+
+Since it is ensured that a LinkedList<String> contains strings it is not necessary to cast an element retrieved from the list to type String . 
+
+Example (using a parameterized type): 
+
+	LinkedList<String> list = new LinkedList<String>(); 
+	list.add("abc");  
+	String s = list.get(0);  // no cast needed
+
+## Abstracts Methods and Classes
+An abstract **class** is a class that is declared abstract—it may or may not include abstract methods. Abstract classes cannot be instantiated, but they can be subclassed. 
+
+An abstract **method** is a method that is declared without an implementation (without braces, and followed by a semicolon), like this:
+
+	public abstract class GraphicObject {
+   		// declare fields
+   		// declare non-abstract methods
+   		abstract void draw();
+	}
+	
+When an abstract class is subclassed, the subclass usually provides implementations for all of the abstract methods in its parent class. However, if it does not, the subclass must also be declared abstract.
+
+#### Abstract Classes versus Interfaces
+Unlike interfaces, abstract classes can contain fields that are not static and final, and they can contain implemented methods. Such abstract classes are similar to interfaces, except that they provide a partial implementation, leaving it to subclasses to complete the implementation. If an abstract class contains only abstract method declarations, it should be declared as an interface instead.
+
+Multiple interfaces can be implemented by classes anywhere in the class hierarchy, whether or not they are related to one another in any way. Think of Comparable or Cloneable, for example.
+
+By comparison, abstract classes are most commonly subclassed to share pieces of implementation. A single abstract class is subclassed by similar classes that have a lot in common (the implemented parts of the abstract class), but also have some differences (the abstract methods).
+
+### Final
+You can declare some or all of a class's methods final. You use the final keyword in a method declaration to indicate that the method cannot be overridden by subclasses. The Object class does this—a number of its methods are final.
+
+## Inheritance
+In the Java programming language, each class is allowed to have one direct superclass, and each superclass has the potential for an unlimited number of subclasses.
+
+## Interfaces
+Implementing an interface allows a class to become more formal about the behavior it promises to provide. Interfaces form a contract between the class and the outside world, and this contract is enforced at build time by the compiler. If your class claims to implement an interface, all methods defined by that interface must appear in its source code before the class will successfully compile.
+
+## Package
+A package is a namespace that organizes a set of related classes and interfaces. Conceptually you can think of packages as being similar to different folders on your computer. You might keep HTML pages in one folder, images in another, and scripts or applications in yet another. Because software written in the Java programming language can be composed of hundreds or thousands of individual classes, it makes sense to keep things organized by placing related classes and interfaces into packages.
+
+## Superclassing
+The Object class, in the java.lang package, sits at the top of the class hierarchy tree. Every class is a descendant, direct or indirect, of the Object class. Every class you use or write inherits the instance methods of Object. You need not use any of these methods, but, if you choose to do so, you may need to override them with code that is specific to your class. The methods inherited from Object that are discussed in this section are:
+
+	protected Object clone() throws CloneNotSupportedException
+    // Creates and returns a copy of this object.
+
+	public boolean equals(Object obj)
+    // Indicates whether some other object is "equal to" this one.
+
+	protected void finalize() throws Throwable
+    // Called by the garbage collector on an object when garbage
+    // collection determines that there are no more references to the object
+	
+	public final Class getClass()
+    // Returns the runtime class of an object.
+
+	public int hashCode()
+    // Returns a hash code value for the object.
+
+	public String toString()
+    // Returns a string representation of the object.
+    
+The notify, notifyAll, and wait methods of Object all play a part in synchronizing the activities of independently running threads in a program, which is discussed in a later lesson and won't be covered here. There are five of these methods:
+
+	public final void notify()
+	public final void notifyAll()
+	public final void wait()
+	public final void wait(long timeout)
+	public final void wait(long timeout, int nanos)
+	
+#### The clone() Method
+If a class, or one of its superclasses, implements the Cloneable interface, you can use the clone() method to create a copy from an existing object. The simplest way to make your class cloneable is to add implements Cloneable to your class's declaration. then your objects can invoke the clone() method. To create a clone, you write:
+
+	aCloneableObject.clone();
+	
+#### The equals() Method
+The equals() method compares two objects for equality and returns true if they are equal. The equals() method provided in the Object class uses the identity operator (==) to determine whether two objects are equal. For primitive data types, this gives the correct result. For objects, however, it does not. The equals() method provided by Object tests whether the object references are equal—that is, if the objects compared are the exact same object.
+
+To test whether two objects are equal in the sense of equivalency (containing the same information), you must override the equals() method. Here is an example of a Book class that overrides equals():
+
+	public class Book {
+    	public boolean equals(Object obj) {
+        	if (obj instanceof Book)
+            	return ISBN.equals((Book)obj.getISBN()); 
+        	else
+            	return false;
+    	}
+	}
+Consider this code that tests two instances of the Book class for equality:
+
+	// Swing Tutorial, 2nd edition
+	Book firstBook  = new Book("0201914670");
+	Book secondBook = new Book("0201914670");
+	if (firstBook.equals(secondBook)) {
+    	System.out.println("objects are equal");
+	} else {
+    	System.out.println("objects are not equal");
+	}
+	
+This program displays objects are equal even though firstBook and secondBook reference two distinct objects. They are considered equal because the objects compared contain the same ISBN number.
+
+You should always override the equals() method if the identity operator is not appropriate for your class.
+
+#### The finalize() Method
+The Object class provides a callback method, finalize(), that may be invoked on an object when it becomes garbage. Object's implementation of finalize() does nothing—you can override finalize() to do cleanup, such as freeing resources.
+
+The finalize() method may be called automatically by the system, but when it is called, or even if it is called, is uncertain. Therefore, you should not rely on this method to do your cleanup for you. For example, if you don't close file descriptors in your code after performing I/O and you expect finalize() to close them for you, you may run out of file descriptors.
+
+#### The getClass() Method
+The getClass() method returns a Class object, which has methods you can use to get information about the class, such as its name (getSimpleName()), its superclass (getSuperclass()), and the interfaces it implements (getInterfaces()). For example, the following method gets and displays the class name of an object:
+
+	void printClassName(Object obj) {
+    	System.out.println("The object's" + " class is " +
+        	obj.getClass().getSimpleName());
+	}
+	
+The Class class, in the java.lang package, has a large number of methods (more than 50). For example, you can test to see if the class is an annotation (isAnnotation()), an interface (isInterface()), or an enumeration (isEnum()). You can see what the object's fields are (getFields()) or what its methods are (getMethods()), and so on.
+
+#### The hashCode() Method
+The value returned by hashCode() is the object's hash code, which is the object's memory address in hexadecimal.
+
+By definition, if two objects are equal, their hash code must also be equal. If you override the equals() method, you change the way two objects are equated and Object's implementation of hashCode() is no longer valid. Therefore, if you override the equals() method, you must also override the hashCode() method as well.
+
+#### The toString() Method
+You should always consider overriding the toString() method in your classes.
+
+The Object's toString() method returns a String representation of the object, which is very useful for debugging. The String representation for an object depends entirely on the object, which is why you need to override toString() in your classes
 
 
 # Ruby
